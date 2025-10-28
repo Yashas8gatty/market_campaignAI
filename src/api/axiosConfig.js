@@ -47,7 +47,70 @@ const mockResponses = {
       trackingUrl: 'http://localhost:5173/track/mock-tracker-123'
     } 
   }),
-  '/api/redeem': () => ({ data: { message: 'Code redeemed successfully!' } })
+  '/api/redeem': () => ({ data: { message: 'Code redeemed successfully!' } }),
+  '/api/campaigns/generate-assets': (data) => ({ 
+    data: { 
+      assets: {
+        qrCodes: [
+          {
+            id: 1,
+            name: 'Main Campaign QR',
+            url: 'https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=https://campaignai.com/track/main-campaign-123',
+            trackingUrl: 'http://localhost:5173/track/demo',
+            scans: 0
+          },
+          {
+            id: 2,
+            name: 'WhatsApp Share QR',
+            url: 'https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=https://campaignai.com/track/whatsapp-123',
+            trackingUrl: 'http://localhost:5173/track/demo',
+            scans: 0
+          }
+        ],
+        socialMediaPosts: [
+          {
+            id: 1,
+            platform: 'Facebook',
+            content: `🎉 Special Campaign is here! Amazing offers await!\n\nDon't miss out on this amazing deal! Visit our store or scan the QR code to claim your offer.\n\n#Sale #Offers #SpecialCampaign`,
+            hashtags: ['#Sale', '#Offers', '#SpecialCampaign'],
+            imageUrl: 'https://via.placeholder.com/1200x630/3B82F6/FFFFFF?text=Facebook+Post'
+          },
+          {
+            id: 2,
+            platform: 'Instagram',
+            content: `✨ Special Campaign ✨\n\nAmazing offers await!\n\nSwipe up or scan our QR code! 📱\n\n#SpecialCampaign #InstaSale #LimitedOffer`,
+            hashtags: ['#InstaSale', '#LimitedOffer', '#SpecialCampaign'],
+            imageUrl: 'https://via.placeholder.com/1080x1080/8B5CF6/FFFFFF?text=Instagram+Post'
+          },
+          {
+            id: 3,
+            platform: 'WhatsApp',
+            content: `🛍️ *Special Campaign* 🛍️\n\nAmazing offers await!\n\n📍 Visit our store today!\n💬 Share with friends and family\n\nLimited time offer!`,
+            hashtags: [],
+            imageUrl: 'https://via.placeholder.com/800x600/10B981/FFFFFF?text=WhatsApp+Message'
+          }
+        ],
+        pamphlets: [
+          {
+            id: 1,
+            name: 'A4 Flyer Design',
+            description: 'Professional A4 flyer with QR code and offer details',
+            downloadUrl: '#',
+            previewUrl: 'https://via.placeholder.com/595x842/EF4444/FFFFFF?text=A4+Flyer+Design',
+            format: 'PDF'
+          },
+          {
+            id: 2,
+            name: 'Business Card Insert',
+            description: 'Small card design for counter display',
+            downloadUrl: '#',
+            previewUrl: 'https://via.placeholder.com/350x200/F59E0B/FFFFFF?text=Business+Card',
+            format: 'PDF'
+          }
+        ]
+      }
+    } 
+  })
 };
 
 const api = axios.create({
